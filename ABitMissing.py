@@ -63,11 +63,11 @@ if writeswitch in ['Y','y']:
     output.close()
     
     hashes = {
-    1:hashlib.sha256(open(filedir1,'rb').read()).hexdigest(),
-    2:hashlib.sha256(open(filedir2,'rb').read()).hexdigest(),
-    3:hashlib.sha256(open(filedir3,'rb').read()).hexdigest(),
-    4:hashlib.sha256(open(filedir4,'rb').read()).hexdigest(),
-    5:hashlib.sha256(open(filedir5,'rb').read()).hexdigest()
+    1:ram_hash1,
+    2:ram_hash2,
+    3:ram_hash3,
+    4:ram_hash4,
+    5:ram_hash5
     }
     output = open('hashes.pkl', "wb")
     pickle.dump(hashes, output)
