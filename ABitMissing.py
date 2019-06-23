@@ -18,7 +18,7 @@ banner = """\
 os.system('cls' if os.name == 'nt' else 'clear')
 print banner
 
-writeswitch = raw_input("Write hashes to files? (Y/N):")
+writeswitch = raw_input("Write hashes to files? This will update the hashes if already stored (Y/N):")
 
 if writeswitch not in ['Y','N','y','n']:
     print "Invalid input, exiting..."
