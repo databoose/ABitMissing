@@ -1,3 +1,3 @@
 # ABitMissing
 A simple python script to check the integrity of the data on your storage device via hashing in sha-256, it is highly advised only to add files into the list that you know will not be changed by either you or automatically by another program.
-<IMG>https://i.imgur.com/npo5Lis.png</IMG>
+![alt text](https://i.imgur.com/npo5Lis.png)
