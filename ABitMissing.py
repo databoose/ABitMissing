@@ -4,7 +4,9 @@ import os
 import pickle
 import random
 import string
+import array
 from termcolor import colored
+
 
 banner = """\
      _    ____  _ _   __  __ _         _             
@@ -18,11 +20,55 @@ banner = """\
 os.system('cls' if os.name == 'nt' else 'clear')
 print (banner)
 
-writeswitch = input("Write hashes to files? This will update the hashes if already stored (Y/N):")
+writeswitch = input("Write hash files in current directory? This will update the hashes if already stored (Y/N): ")
+randcounter = -1
+randreplacecounter = -1
 
 if writeswitch not in ['Y','N','y','n']:
     print ("Invalid input, exiting...")
     os._exit(1)
+
+randgenswitch = input("Make a random file? (300KB per file max) (Y/N): ")
+
+if randgenswitch not in ['Y','N','y','n']:
+   print ("Invalid input, exiting...")
+   os._exit(1)
+
+if randgenswitch in ['Y','y']:
+    print(colored("-- Randomized files will be dropped in the current directory of this script --", 'yellow'))
+    randstring_array = list()
+    array_amount = int(input("Enter how many random files you want to generate (1-5): "))
+    if array_amount not in [1,2,3,4,5]:
+        print(colored("A number outside the range of 1 to 5 has been entered which is invalid, exiting.", 'red'))
+        os._exit(1)
+    elif array_amount in [1,2,3,4,5]:
+        random.seed(input("Enter random seed for file generation: "))
+        for array_amount in range(array_amount):
+            n = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(300000))
+            randstring_array.append(n)
+            randcounter = randcounter + 1
+            output = open('randomfile'+str(randcounter), "wb")
+
+            if randcounter == 0:
+               print("Array at randcounter[0], dumping to corresponding file")
+               pickle.dump(randstring_array[0], output)
+            elif randcounter == 1:
+                print("Array at randcounter[1], dumping to corresponding file")
+                pickle.dump(randstring_array[1], output)
+            elif randcounter == 2:
+                print("Array at randcounter[2], dumping to corresponding file")
+                pickle.dump(randstring_array[2], output)
+            elif randcounter == 3:
+                print("Array at randcounter[3], dumping to corresponding file")
+                pickle.dump(randstring_array[3], output)
+            elif randcounter == 4:
+                print("Array at randcounter[4], dumping to corresponding file")
+                pickle.dump(randstring_array[4], output)
+    output.close()
+    exit
+
+elif randgenswitch in ['N','n']:
+    exit
 
 # Change the file directory variables to files you know will not change, either by a program or by you.
 
@@ -72,7 +118,8 @@ if writeswitch in ['Y','y']:
     output = open('hashes.pkl', "wb")
     pickle.dump(hashes, output)
     output.close()
-elif writeswitch not in ['Y','y']:
+
+elif writeswitch in ['N','n']:
     print (colored('User doesnt want to write to file, skipping', 'grey'))
     exit
 # End of writing values
