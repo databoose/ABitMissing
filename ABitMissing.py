@@ -49,20 +49,20 @@ if randgenswitch in ['Y','y']:
             randcounter = randcounter + 1
             output = open('randomfile'+str(randcounter), "wb")
 
-            if randcounter == 0:
-               print("Array at randcounter[0], dumping to corresponding file")
+           if randcounter == 0:
+               print("Dumping randstring_array[0]")
                pickle.dump(randstring_array[0], output)
             elif randcounter == 1:
-                print("Array at randcounter[1], dumping to corresponding file")
+                print("Dumping randstring_array[1]")
                 pickle.dump(randstring_array[1], output)
             elif randcounter == 2:
-                print("Array at randcounter[2], dumping to corresponding file")
+                print("Dumping randstring_array[2]")
                 pickle.dump(randstring_array[2], output)
             elif randcounter == 3:
-                print("Array at randcounter[3], dumping to corresponding file")
+                print("Dumping randstring_array[3]")
                 pickle.dump(randstring_array[3], output)
             elif randcounter == 4:
-                print("Array at randcounter[4], dumping to corresponding file")
+                print("Dumping randstring_array[4]")
                 pickle.dump(randstring_array[4], output)
     output.close()
     exit
