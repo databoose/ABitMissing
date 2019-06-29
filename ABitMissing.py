@@ -49,7 +49,7 @@ if randgenswitch in ['Y','y']:
             randcounter = randcounter + 1
             output = open('randomfile'+str(randcounter), "wb")
 
-           if randcounter == 0:
+            if randcounter == 0:
                print("Dumping randstring_array[0]")
                pickle.dump(randstring_array[0], output)
             elif randcounter == 1:
@@ -71,34 +71,62 @@ elif randgenswitch in ['N','n']:
     exit
 
 # Change the file directory variables to files you know will not change, either by a program or by you.
+try:
+  print ("-----------------------------------------------------------------------------")
+  filedir1 = 'randomfile0'
+  print ("Hash for ",filedir1,":",hashlib.sha256(open(filedir1,'rb').read()).hexdigest())
+  ram_hash1 = hashlib.sha256(open(filedir1,'rb').read()).hexdigest()
+  print ("-----------------------------------------------------------------------------")
+except FileNotFoundError as error:
+    print ("File",filedir1,"not found")
+    print (colored("Exiting due to error...", 'red'))
+    print ("-----------------------------------------------------------------------------")
+    os._exit(1)
 
-print ("-----------------------------------------------------------------------------")
-filedir1 = 'YOUR-FILE-PATH-HERE'
-print ("Hash for ",filedir1,":",hashlib.sha256(open(filedir1,'rb').read()).hexdigest())
-ram_hash1 = hashlib.sha256(open(filedir1,'rb').read()).hexdigest()
-print ("-----------------------------------------------------------------------------")
+try:
+  filedir2 = 'randomfile1'
+  print ("Hash for ",filedir2,":",hashlib.sha256(open(filedir2,'rb').read()).hexdigest())
+  ram_hash2 = hashlib.sha256(open(filedir2,'rb').read()).hexdigest()
+  print ("-----------------------------------------------------------------------------")
+except FileNotFoundError as error:
+    print ("File",filedir2,"not found")
+    print (colored("Exiting due to error...", 'red'))
+    print ("-----------------------------------------------------------------------------")
+    os._exit(1)
 
-filedir2 = 'YOUR-FILE-PATH-HERE'
-print ("Hash for ",filedir2,":",hashlib.sha256(open(filedir2,'rb').read()).hexdigest())
-ram_hash2 = hashlib.sha256(open(filedir2,'rb').read()).hexdigest()
-print ("-----------------------------------------------------------------------------")
+try:
+  filedir3 = 'randomfile2'
+  print ("Hash for ",filedir3,":",hashlib.sha256(open(filedir3,'rb').read()).hexdigest())
+  ram_hash3 = hashlib.sha256(open(filedir3,'rb').read()).hexdigest()
+  print ("-----------------------------------------------------------------------------")
+except FileNotFoundError as error:
+    print ("File",filedir3,"not found")
+    print (colored("Exiting due to error...", 'red'))
+    print ("-----------------------------------------------------------------------------")
+    os._exit(1)
 
-filedir3 = 'YOUR-FILE-PATH-HERE'
-print ("Hash for ",filedir3,":",hashlib.sha256(open(filedir3,'rb').read()).hexdigest())
-ram_hash3 = hashlib.sha256(open(filedir3,'rb').read()).hexdigest()
-print ("-----------------------------------------------------------------------------")
+try:
+  filedir4 = 'randomfile3'
+  print ("Hash for ",filedir4,":",hashlib.sha256(open(filedir4,'rb').read()).hexdigest())
+  ram_hash4 = hashlib.sha256(open(filedir4,'rb').read()).hexdigest()
+  print ("-----------------------------------------------------------------------------")
+except FileNotFoundError as error:
+    print ("File",filedir4,"not found")
+    print (colored("Exiting due to error...", 'red'))
+    print ("-----------------------------------------------------------------------------")
+    os._exit(1)
 
-filedir4 = 'YOUR-FILE-PATH-HERE'
-print ("Hash for ",filedir4,":",hashlib.sha256(open(filedir4,'rb').read()).hexdigest())
-ram_hash4 = hashlib.sha256(open(filedir4,'rb').read()).hexdigest()
-print ("-----------------------------------------------------------------------------")
+try:
+  filedir5 = 'randomfile4'
+  print ("Hash for ",filedir5,":",hashlib.sha256(open(filedir5,'rb').read()).hexdigest())
+  ram_hash5 = hashlib.sha256(open(filedir5,'rb').read()).hexdigest()
+  print ("-----------------------------------------------------------------------------")
+except FileNotFoundError as error:
+    print ("File",filedir5,"not found")
+    print (colored("Exiting due to error...", 'red'))
+    print ("-----------------------------------------------------------------------------")
+    os._exit(1)
 
-filedir5 = 'YOUR-FILE-PATH-HERE'
-print ("Hash for ",filedir5,":",hashlib.sha256(open(filedir5,'rb').read()).hexdigest())
-ram_hash5 = hashlib.sha256(open(filedir5,'rb').read()).hexdigest()
-print ("-----------------------------------------------------------------------------")
-
-filepath = 'hashes.txt'
 
 # Writing values
 if writeswitch in ['Y','y']:
