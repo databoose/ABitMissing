@@ -4,9 +4,16 @@ import os
 import pickle
 import random
 import string
+import datetime
 import array
 from termcolor import colored
 
+try:
+  pkl_file = open("timestamp.pkl", "rb")
+  timestamp_stored = pickle.load(pkl_file)
+  pkl_file.close()
+except FileNotFoundError:
+  exit
 
 banner = """\
      _    ____  _ _   __  __ _         _             
@@ -19,7 +26,14 @@ banner = """\
 
 os.system('cls' if os.name == 'nt' else 'clear')
 print (banner)
+currentDT = datetime.datetime.now()
 
+try:
+    print(colored("Date of latest hash generation :", 'green'), timestamp_stored)
+    print (" ")
+except NameError:
+    exit
+    
 writeswitch = input("Write hash files in current directory? This will update the hashes if already stored (Y/N): ")
 randcounter = -1
 randreplacecounter = -1
@@ -130,12 +144,7 @@ except FileNotFoundError as error:
 
 # Writing values
 if writeswitch in ['Y','y']:
-    print(colored('Dumping hash values from ram to storage (dirnames.pkl and hashes.pkl)...', 'cyan'))
-    dirnames = {1:filedir1,2:filedir2,3:filedir3,4:filedir4,5:filedir5}
-    output = open('dirnames.pkl', "wb")
-    pickle.dump(dirnames, output)
-    output.close()
-    
+    print(colored('Dumping hash values from ram to storage (hashes.pkl and timestamp.pkl)...', 'cyan'))
     hashes = {
     1:ram_hash1,
     2:ram_hash2,
@@ -143,8 +152,13 @@ if writeswitch in ['Y','y']:
     4:ram_hash4,
     5:ram_hash5
     }
+    timestamp_stored = currentDT.strftime("%Y-%m-%d %H:%M:%S")
     output = open('hashes.pkl', "wb")
     pickle.dump(hashes, output)
+    output.close()
+
+    output = open ('timestamp.pkl', "wb")
+    pickle.dump(timestamp_stored, output)
     output.close()
 
 elif writeswitch in ['N','n']:
@@ -153,41 +167,37 @@ elif writeswitch in ['N','n']:
 # End of writing values
 
 # Reading values
-pkl_file = open("dirnames.pkl", "rb")
-dirnames = pickle.load(pkl_file)
-pkl_file.close()
-
 pkl_file = open("hashes.pkl", "rb")
 hashes = pickle.load(pkl_file)
 pkl_file.close()
 # End of reading values
 
 if ram_hash1 == hashes[1]:
-    print (colored('Hashes matched on :', 'green'), dirnames[1])
+    print (colored('Hashes matched on :', 'green'), filedir1)
 elif ram_hash1 != hashes[1]:
-    print (colored("Hash mismatch on :", 'red'), dirnames[1])
+    print (colored("Hash mismatch on :", 'red'), filedir1)
     print (colored("File has either changed naturally from user, or storage device has corrupted file", 'red'))
 
 if ram_hash2 == hashes[2]:
-    print(colored('Hashes matched on :', 'green'), dirnames[2])
+    print(colored('Hashes matched on :', 'green'), filedir2)
 elif ram_hash2 != hashes[2]:
-    print(colored("Hash mismatch on :", 'red'), dirnames[2])
+    print(colored("Hash mismatch on :", 'red'), filedir2)
     print(colored("File has either changed naturally from user, or storage device has corrupted file", 'red'))
 
 if ram_hash3 == hashes[3]:
-    print(colored('Hashes matched on :', 'green'), dirnames[3])
+    print(colored('Hashes matched on :', 'green'), filedir3)
 elif ram_hash3 != hashes[3]:
-    print(colored("Hash mismatch on :", 'red'), dirnames[3])
+    print(colored("Hash mismatch on :", 'red'), filedir3)
     print(colored("File has either changed naturally from user, or storage device has corrupted file", 'red'))
 
 if ram_hash4 == hashes[4]:
-    print(colored('Hashes matched on :', 'green'), dirnames[4])
+    print(colored('Hashes matched on :', 'green'),filedir4)
 elif ram_hash4 != hashes[4]:
-    print(colored("Hash mismatch on :", 'red'), dirnames[4])
+    print(colored("Hash mismatch on :", 'red'), filedir4)
     print(colored("File has either changed naturally from user, or storage device has corrupted file", 'red'))
 
 if ram_hash5 == hashes[5]:
-    print(colored('Hashes matched on :', 'green'), dirnames[5])
+    print(colored('Hashes matched on :', 'green'), filedir5)
 elif ram_hash5 != hashes[5]:
-    print(colored("Hash mismatch on :", 'red'), dirnames[5])
+    print(colored("Hash mismatch on :", 'red'), filedir5)
     print(colored("File has either changed naturally from user, or storage device has corrupted file", 'red'))
