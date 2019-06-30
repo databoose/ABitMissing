@@ -5,4 +5,4 @@ Note: Two files will be created in whatever directory the python file is ran in 
 
 Replace "YOUR-FILE-PATH-HERE" in the script with the desired file path of the file you want to add to the hashing list, or alternatively with the randomly generated file(s).
 
-![alt text](https://i.imgur.com/KXU9ajP.png)
+![alt text](https://i.imgur.com/T6OIFsy.png)
