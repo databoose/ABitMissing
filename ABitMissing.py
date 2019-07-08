@@ -61,6 +61,12 @@ if __name__ == "__main__":
          random.seed(input("Enter random seed for file generation: "))
          randfilesize = int(input("Enter size of each random file (in kilobytes): "))
      for array_amount in range(array_amount):
+            print(colored("-- Generating random data --", 'green'))
+            if (randfilesize * 1000 > 30000):
+                print(colored("Requested filesize detected above 30MB, this may take a while",'yellow'))
+            elif (randfilesize * 1000 < 30000):
+                exit
+
             rand_data = ''.join(random.choice(string.ascii_letters + string.digits + string.hexdigits) for _ in range(randfilesize * 1000))
             randstring_array.append(rand_data)
             randcounter = randcounter + 1
@@ -138,7 +144,7 @@ if __name__ == "__main__":
      os._exit(1)
 
  try:
-   filedir5 = 'randomfile4'
+   filedir5 = '/home/Desktop/crypt-folder/Dropbox/crypt'
    print ("Hash for ",filedir5,":",hashlib.sha256(open(filedir5,'rb').read()).hexdigest())
    ram_hash5 = hashlib.sha256(open(filedir5,'rb').read()).hexdigest()
    print ("-----------------------------------------------------------------------------")
