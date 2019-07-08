@@ -38,7 +38,7 @@ if __name__ == "__main__":
  writeswitch = input("Write hash files in current directory? This will update the hashes if already stored (Y/N): ")
  randcounter = -1
  randreplacecounter = -1
-
+ notified_randgen = 0
  if writeswitch in ['Y','y']:
      randgenswitch = input("Make random file(s)? (Y/N): ")
 
@@ -61,32 +61,35 @@ if __name__ == "__main__":
          random.seed(input("Enter random seed for file generation: "))
          randfilesize = int(input("Enter size of each random file (in kilobytes): "))
      for array_amount in range(array_amount):
-            print(colored("-- Generating random data --", 'green'))
-            if (randfilesize * 1000 > 30000):
-                print(colored("Requested filesize detected above 30MB, this may take a while",'yellow'))
-            elif (randfilesize * 1000 < 30000):
-                exit
+         if (notified_randgen == 0):
+             print(colored("-- Generating random data --", 'green'))
+             notified_randgen = 1
+             if (randfilesize * 1000 > 30000):
+                 print(colored("Requested filesize detected above 30MB, this may take a while",'yellow'))
+             elif (randfilesize * 1000 < 30000):
+                 exit
+         elif (notified_randgen == 1):
+             exit
+         rand_data = ''.join(random.choice(string.ascii_letters + string.digits + string.hexdigits) for _ in range(randfilesize * 1000))
+         randstring_array.append(rand_data)
+         randcounter = randcounter + 1
+         output = open('randomfile'+str(randcounter), "wb")
 
-            rand_data = ''.join(random.choice(string.ascii_letters + string.digits + string.hexdigits) for _ in range(randfilesize * 1000))
-            randstring_array.append(rand_data)
-            randcounter = randcounter + 1
-            output = open('randomfile'+str(randcounter), "wb")
-
-            if randcounter == 0:
-              print("Dumping randstring_array[0]")
-              pickle.dump(randstring_array[0], output)
-            elif randcounter == 1:
-              print("Dumping randstring_array[1]")
-              pickle.dump(randstring_array[1], output)
-            elif randcounter == 2:
-              print("Dumping randstring_array[2]")
-              pickle.dump(randstring_array[2], output)
-            elif randcounter == 3:
-              print("Dumping randstring_array[3]")
-              pickle.dump(randstring_array[3], output)
-            elif randcounter == 4:
-              print("Dumping randstring_array[4]")
-              pickle.dump(randstring_array[4], output)
+         if randcounter == 0:
+           print("Dumping randstring_array[0]")
+           pickle.dump(randstring_array[0], output)
+         elif randcounter == 1:
+           print("Dumping randstring_array[1]")
+           pickle.dump(randstring_array[1], output)
+         elif randcounter == 2:
+           print("Dumping randstring_array[2]")
+           pickle.dump(randstring_array[2], output)
+         elif randcounter == 3:
+           print("Dumping randstring_array[3]")
+           pickle.dump(randstring_array[3], output)
+         elif randcounter == 4:
+           print("Dumping randstring_array[4]")
+           pickle.dump(randstring_array[4], output)
      output.close()
      exit
 
