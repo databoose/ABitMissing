@@ -244,7 +244,7 @@ if __name__ == "__main__":
      output.close()
 
  elif writeswitch in ['N','n']:
-     print (colored('User doesnt want to write to file, skipping', 'grey'))
+     print (colored('User doesn\'t want to write to file, skipping', 'grey'))
      exit
 # End of writing values
 
