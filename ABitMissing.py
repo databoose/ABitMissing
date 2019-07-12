@@ -1,4 +1,5 @@
 import sys
+import argparse
 import hashlib
 import os
 import pickle
@@ -6,6 +7,7 @@ import random
 import string
 import datetime
 import array
+from time import sleep
 from termcolor import colored
 
 if __name__ == "__main__":
@@ -15,6 +17,70 @@ if __name__ == "__main__":
    pkl_file.close()
  except FileNotFoundError:
    exit
+
+ arglist = sys.argv
+ try:
+    if arglist[1] == str('--wipe-data'):
+        wipe_answer = input(colored("Are you sure you want to delete the random files, hashes and timestamp? (Y/N): ",'red'))
+        
+        if wipe_answer in ['Y','y']:
+            print ("Deleting randomfile0...")
+            try:
+                os.remove('randomfile0')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+
+            print ("Deleting randomfile1...")
+            try:
+                os.remove('randomfile1')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+
+            print ("Deleting randomfile2...")
+            try:
+                os.remove('randomfile2')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+
+            print ("Deleting randomfile3...")
+            try:
+                os.remove('randomfile3')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+
+            print ("Deleting randomfile4...")
+            try:
+                os.remove('randomfile4')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+            
+            print ("Deleting timestamp...")
+            try:
+                os.remove('timestamp.pkl')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            sleep(0.8)
+
+            print ("Deleting hashes...")
+            try:
+                os.remove('hashes.pkl')
+            except FileNotFoundError:
+                print (colored("File does not exist, continuing",'yellow'))
+            print ("Process done, going to main part of script in 5 seconds")
+            sleep(5)
+            exit
+
+        elif wipe_answer in ['N','n']:
+            print("User answered no, going to main part of script in 5 seconds")
+            sleep(5)
+            exit
+ except IndexError:
+     exit
 
  banner = """\
      _    ____  _ _   __  __ _         _             
