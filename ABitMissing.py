@@ -130,9 +130,9 @@ if __name__ == "__main__":
          if (notified_randgen == 0):
              print(colored("-- Generating random data --", 'green'))
              notified_randgen = 1
-             if (randfilesize * 1000 > 30000):
+             if (randfilesize * 1000 > 3000000): # 3000000 = 30MB
                  print(colored("Requested filesize detected above 30MB, this may take a while",'yellow'))
-             elif (randfilesize * 1000 < 30000):
+             elif (randfilesize * 1000 < 3000000): # 3000000 = 30MB
                  exit
          elif (notified_randgen == 1):
              exit
