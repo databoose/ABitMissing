@@ -24,8 +24,7 @@ if __name__ == "__main__":
     arglist = sys.argv
     try:
         if arglist[1] == str('--wipe-data'):
-            wipe_answer = input(colored(
-                "Are you sure you want to delete the random files, hashes and timestamp? (Y/N): ", 'red'))
+            wipe_answer = input(colored("Are you sure you want to delete the random files, hashes and timestamp? (Y/N): ", 'red'))
 
             if wipe_answer in ['Y', 'y']:
                 print("Deleting randomfile0...")
@@ -178,20 +177,11 @@ if randgenswitch in ['Y', 'y']:
     print(colored("-- Randomized files will be dropped in the current directory of this script --", 'yellow'))
     random.seed(input("Enter random seed for file generation: "))
     randfilesize = int(input("Enter size of each random file (in kilobytes): "))
-            
-    filedir1 = ''; filedir2 = ''
-    filedir3 = ''; filedir4 = ''
-    filedir5 = ''
+    
+    filedir1, filedir2, filedir3, filedir4, filedir5 = "","","","",""
+    ram_hash1, ram_hash2, ram_hash3, ram_hash4, ram_hash5 = "","","","",""
 
-    ram_hash1 = ''; ram_hash2 = ''
-    ram_hash3 = ''; ram_hash4 = ''
-    ram_hash5 = ''
-
-    p1 = Process(target=GenRand1, args=())
-    p2 = Process(target=GenRand2, args=())
-    p3 = Process(target=GenRand3, args=())
-    p4 = Process(target=GenRand4, args=())
-    p5 = Process(target=GenRand5, args=())
+    p1, p2, p3, p4, p5 = Process(target=GenRand1), Process(target=GenRand2), Process(target=GenRand3), Process(target=GenRand4), Process(target=GenRand5)
 
     p1.start()
     p2.start()
